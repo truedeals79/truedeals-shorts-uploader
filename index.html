@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrueDeals Shorts Uploader &mdash; Privacy Policy</title>
+<style>
+  body { max-width: 44rem; margin: 3rem auto; padding: 0 1.25rem;
+         font: 16px/1.6 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         color: #1a1a1a; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.1rem; margin-top: 2rem; }
+  .sub { color: #666; margin-top: 0; }
+  code { background: #f4f4f4; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  footer { margin-top: 3rem; color: #666; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>TrueDeals Shorts Uploader</h1>
+<p class="sub">Privacy Policy &mdash; last updated 14 September 2026</p>
+
+<h2>What this application is</h2>
+<p>
+TrueDeals Shorts Uploader is a private, internal tool operated by Damion Tucker,
+a sole operator trading as TrueDealsDesigns. It uploads short videos of my own
+products to my own YouTube channel, TrueDeals79
+(channel ID <code>UCK-nscJZtU5dsIOb7dCyD0w</code>), using the YouTube Data API v3.
+</p>
+<p>
+It is not a public product. It is not distributed, sold, or offered to anyone
+else. It has exactly one user: me. Nobody else can sign in to it, and it runs
+only on my own computer.
+</p>
+
+<h2>Whose data it touches</h2>
+<p>
+The application authenticates as me, using my own Google account, and it acts
+only on my own YouTube channel. It does not access, request, read, or store
+data belonging to any other YouTube user, channel, or viewer.
+</p>
+<p>
+Because there are no other users, the application collects no personal
+information from anyone. There is no sign-up, no account system, no analytics,
+no tracking, no cookies, and no third party the data could be shared with.
+</p>
+
+<h2>What it stores, and why</h2>
+<p>
+For each video it uploads to my own channel, the application keeps a local
+record of:
+</p>
+<ul>
+  <li>the YouTube video ID;</li>
+  <li>the video title and description I wrote;</li>
+  <li>the date it was published;</li>
+  <li>the public permalink, in the form
+      <code>https://www.youtube.com/shorts/{video_id}</code>.</li>
+</ul>
+<p>
+These describe my own uploaded videos. They are not information about a person.
+They are kept for one reason: so the tool does not upload the same video to my
+channel twice.
+</p>
+<p>
+This record is stored in a file on my own computer. It is not uploaded
+anywhere, not published, and not shared with any third party.
+</p>
+
+<h2>Credentials</h2>
+<p>
+The application uses my own API key and my own OAuth 2.0 client credentials and
+refresh token, issued to my Google account. They are stored in a local
+environment file on my own machine, are not in source control, and are not
+shared with anyone. The OAuth token authorises the application to upload to my
+channel and nothing else.
+</p>
+
+<h2>API methods used</h2>
+<ul>
+  <li><code>videos.insert</code> &mdash; uploads one of my videos to my own
+      channel. This is the only write call the application makes.</li>
+  <li><code>videos.list</code> &mdash; reads back a video I have just uploaded,
+      to confirm what privacy setting it came back with.</li>
+  <li><code>channels.list</code> and <code>playlistItems.list</code> &mdash;
+      read my own channel's uploads, so the tool can tell what is already
+      posted before queuing anything new.</li>
+</ul>
+<p>
+No other YouTube API methods are called. The application does not use search,
+comments, subscriptions, or analytics APIs, and does not scrape YouTube by any
+means.
+</p>
+
+<h2>Content</h2>
+<p>
+Every video uploaded is one I made myself: product photography and footage of
+my own products, or stock footage licensed from Pexels under its free licence,
+with credit and source recorded alongside the video files. No video contains
+content taken from another creator or another channel.
+</p>
+
+<h2>Advertising and links</h2>
+<p>
+The application displays no advertising. Video descriptions link only to my own
+Etsy shop, TrueDealsDesigns. There are no affiliate links and no links to any
+party I do not own.
+</p>
+
+<h2>Data retention and deletion</h2>
+<p>
+Since no data about any other person is collected, there is nothing for anyone
+to request access to or deletion of. My own local records are deleted whenever
+I choose to delete them.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+If the application's behaviour changes, this page will be updated and the date
+at the top revised.
+</p>
+
+<h2>Contact</h2>
+<p>
+Damion Tucker &mdash; <a href="mailto:truedeals79@gmail.com">truedeals79@gmail.com</a><br>
+6627 Ogontz Ave, Philadelphia, Pennsylvania 19126, United States
+</p>
+
+<footer>
+TrueDeals Shorts Uploader is an internal tool. YouTube is a trademark of Google LLC.
+</footer>
+
+</body>
+</html>
