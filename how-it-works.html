@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrueDeals Shorts Uploader &mdash; How it works</title>
+<style>
+  body { max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem;
+         font: 16px/1.6 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         color: #1a1a1a; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.1rem; margin-top: 2rem; }
+  .sub { color: #666; margin-top: 0; }
+  nav { margin: 1rem 0 0; font-size: 0.95rem; }
+  hr { border: 0; border-top: 1px solid #e3e3e3; margin-top: 1.5rem; }
+  pre { background: #f6f8fa; border: 1px solid #e3e3e3; border-radius: 6px;
+        padding: 0.9rem 1rem; overflow-x: auto; font-size: 0.85rem;
+        line-height: 1.45; }
+  code { background: #f4f4f4; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  pre code { background: none; padding: 0; }
+  footer { margin-top: 3rem; color: #666; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>TrueDeals Shorts Uploader</h1>
+<p class="sub">
+An internal tool that uploads Damion Tucker's own product Shorts to his own
+YouTube channel, <a href="https://www.youtube.com/@TrueDeals79">@TrueDeals79</a>,
+using YouTube API Services.
+</p>
+<nav>
+  <a href="./">Privacy Policy</a> &middot;
+  <a href="./terms.html">Terms of Service</a> &middot;
+  <a href="./how-it-works.html">How it works</a> &middot;
+  <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a> &middot;
+  <a href="https://policies.google.com/privacy">Google Privacy Policy</a>
+</nav>
+
+<hr>
+
+<h2 style="margin-top:2rem">The upload interface</h2>
+<p>
+There is no graphical interface and no sign-in page. The application is a
+command-line tool that runs on its operator's own computer, on a daily
+schedule. This page exists so a reviewer can see what that interface actually
+looks like.
+</p>
+
+<h2>1. The operator queues a video they made</h2>
+<p>
+Each entry in the local posting queue points at a video file on the operator's
+own machine, with the title and description the operator wrote:
+</p>
+<pre><code>{
+  "product":  "wolf-always-remember-lifestyle",
+  "platform": "youtube_shorts",
+  "media":    "record/wolf-always-remember-lifestyle/videoA/final.mp4",
+  "title":    "Engraved wolf tee, always remember, close up on the print",
+  "caption":  "Always remember the wolf in sheep's clothing...\n\nShop link is
+               on my channel page. Tap my name to get there.\n\n#shorts",
+  "link":     "https://www.etsy.com/listing/...",
+  "status":   "queued"
+}</code></pre>
+
+<h2>2. The drain runs and uploads</h2>
+<p>
+On a schedule, the drain takes what is due and uploads it. This is the entire
+user-facing interface:
+</p>
+<pre><code>&gt; python -m workforce autopost-drain
+
+instagram_reels posted: wolf-always-remember-lifestyle (id 18037...)
+facebook_reels  posted: wolf-always-remember-lifestyle (id 12244...)
+youtube_shorts  posted: wolf-always-remember-lifestyle (id dQw4w9WgXcQ)
+  -&gt; https://www.youtube.com/shorts/dQw4w9WgXcQ</code></pre>
+
+<h2>3. Checking what is already live</h2>
+<p>
+A read-only command compares the channel's own uploads against the local queue,
+so nothing is ever posted twice. It uses only the API key, makes no writes, and
+needs no OAuth:
+</p>
+<pre><code>&gt; python -m workforce youtube-reconcile
+
+channel holds 27 video(s); queue holds 91 youtube_shorts entries
+46 already live, 8 ambiguous, 37 genuinely new
+  LIVE  Funny cat shirt, rock paper scissors paw            -&gt; MUUuPc5e_kI
+  NEW   Engraved wolf tee, always remember, close up        -&gt; (not yet posted)
+
+dry run: nothing stamped.</code></pre>
+
+<h2>4. The one write call</h2>
+<p>
+<code>videos.insert</code> is the only write the application makes. It uploads
+one video at a time, to the operator's own channel, and then reads the video
+back with <code>videos.list</code> to confirm what privacy status it came back
+with. Nothing else on YouTube is touched.
+</p>
+
+<h2>Revoking access</h2>
+<p>
+The operator can withdraw this application's access at any time from the
+<a href="https://myaccount.google.com/permissions">Google security settings
+page</a>, which immediately stops it being able to upload.
+</p>
+
+<footer>
+TrueDeals Shorts Uploader is an internal tool. YouTube is a trademark of Google LLC.
+</footer>
+
+</body>
+</html>
